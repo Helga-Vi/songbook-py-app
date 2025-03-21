@@ -4,6 +4,14 @@ import random
 
 app = Flask(__name__)
 
+#Upload static (style) files
+app.config['UPLOAD_FOLDER'] = 'static'
+
+@app.route('/static/<path:path>')
+def send_static(path):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], path)
+
+
 # Connect to MongoDB
 client = MongoClient('mongodb://localhost:27017/')
 db = client['songbook_db']  # Create a database named 'songbook_db'
