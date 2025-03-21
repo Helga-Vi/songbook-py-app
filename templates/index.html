@@ -3,15 +3,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Flask and JavaScript Example</title>
+    <title>Song lyrics</title>
 </head>
 <body>
-    <form action="/" method="post">
-        <input type="text" name="message" placeholder="Enter your message">
+    <h1>Random Song of the Day</h1>
+    <p><strong>{{ title }}</strong> by {{ artist }}</strong></p>
+    <form action="{{ url_for('process_request') }}" method="post">
+        <input type="hidden" name="song_title" value="{{ title }}">
+        <label for="yes">Yes, I'd love the lyrics!</label>
+        <input type="radio" id="yes" name="choice" value="yes" required>
+        <br>
+        <label for="no">No thanks, I'm good.</label>
+        <input type="radio" id="no" name="choice" value="no" required>
+        <br>
         <button type="submit">Submit</button>
     </form>
-    {% if message %}
-    <p>{{ message }}</p>
-    {% endif %}
 </body>
 </html>
