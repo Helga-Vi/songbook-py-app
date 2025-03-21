@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <div class="content-wrapper">
     <h1>Sangvelger</h1>
     <p><strong>{{ title }}</strong> by {{ artist }}</strong></p>
     <form action="{{ url_for('process_request') }}" method="post">
@@ -19,5 +20,6 @@
         <br>
         <button type="submit">Submit</button>
     </form>
+    </div>
 </body>
 </html>
