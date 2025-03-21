@@ -9,15 +9,17 @@
 <body>
     <div class="content-wrapper">
     <h1>Sangvelger</h1>
-    <p><strong>{{ title }}</strong> by {{ artist }}</strong></p>
+    <p><strong>{{ title }}</strong> med {{ artist }}</strong></p>
     <form action="{{ url_for('process_request') }}" method="post">
         <input type="hidden" name="song_title" value="{{ title }}">
-        <label for="yes">Yes, I'd love the lyrics!</label>
+        <div class="radio-group">
+        <label for="yes">Ja, jeg vil ha teksten!</label>
         <input type="radio" id="yes" name="choice" value="yes" required>
-        <br>
-        <label for="no">No thanks, I'm good.</label>
+        </div>
+        <div class="radio-group"></div>
+        <label for="no">Nei takk.</label>
         <input type="radio" id="no" name="choice" value="no" required>
-        <br>
+        </div>
         <button type="submit">Submit</button>
     </form>
     </div>

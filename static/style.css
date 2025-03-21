@@ -30,11 +30,21 @@ form {
     gap: 10px;
 }
 
-label, input[type="radio"], button {
+.radio-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+label {
     display: block;
     margin-bottom: 10px;
 }
 
 input[type="radio"] {
     margin-right: 5px;
+}
+
+button {
+    margin-top: 20px;
 }
