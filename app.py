@@ -19,7 +19,7 @@ def home():
     
     return render_template('index.html', 
                           title=random_song['Sangtittel'],
-                          artist=random_song['Artist'].split()[0])
+                          artist=random_song['Artist'])
 
 @app.route('/process_request', methods=['POST'])
 def process_request():

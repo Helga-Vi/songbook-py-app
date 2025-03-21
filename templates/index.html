@@ -6,7 +6,7 @@
     <title>Song lyrics</title>
 </head>
 <body>
-    <h1>Random Song of the Day</h1>
+    <h1>Sangvelger</h1>
     <p><strong>{{ title }}</strong> by {{ artist }}</strong></p>
     <form action="{{ url_for('process_request') }}" method="post">
         <input type="hidden" name="song_title" value="{{ title }}">
