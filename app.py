@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask import Flask, render_template, request, redirect, url_for, jsonify, session
 from pymongo import MongoClient
 import random
 from lyrics_search import search_lyrics
@@ -26,6 +26,9 @@ def home():
     
     # Randomly select a song
     random_song = random.choice(all_songs)
+
+    # Store the language in session
+    session['song_language'] = random_song['Spraak']
     
     return render_template('index.html', 
                           title=random_song['Sangtittel'],
@@ -60,9 +63,9 @@ def process_request():
             else:
                 print("Tekst ikke tilgjengelig, starter internettsøk")
                 return jsonify({"error": "Tekst ikke tilgjengelig i databasen. Søker online..."})
-                lyrics = search_lyrics(song_title, artist_name, language)
+                lyrics = search_lyrics(song_title, artist_name, session.get('song_language'))
 
-                return lyrics
+                return jsonify({"success": True, "message": f"Lyrics searched for {song_title}", "search_results": search_results})
         else:
             # Song not found in database
             print("Sang ikke funnet i databasen")
