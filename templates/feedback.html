@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback</title>
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4);
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 6px;
+            width: 80%;
+            max-width: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div id="feedbackModal" class="modal">
+        <div class="modal-content">
+            <h2 id="feedbackTitle"></h2>
+            <p id="feedbackMessage"></p>
+            <button onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        function showModal(message, title = "") {
+            document.getElementById('feedbackModal').style.display = 'block';
+            document.getElementById('feedbackTitle').textContent = title;
+            document.getElementById('feedbackMessage').textContent = message;
+        }
+
+        function closeModal() {
+            document.getElementById('feedbackModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
