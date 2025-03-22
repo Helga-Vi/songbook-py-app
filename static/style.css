@@ -1,24 +1,11 @@
-body, html {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-}
-
 .content-wrapper {
     max-width: 800px;
         margin: 0 auto;
         padding: 20px;
 }
 
-h1 {
-    color: #333;
-    margin-bottom: 20px;
-}
-
-p {
-    color: #666;
-    margin-bottom: 30px;
+h1, p {
+    text-align: center;
 }
 
 form {
@@ -29,10 +16,7 @@ form {
 }
 
 .radio-group {
-    display: flex;
-    align-items: center;
     margin-bottom: 20px;
-    gap: 10px;
 }
 
 label {
@@ -41,15 +25,18 @@ label {
 }
 
 input[type="radio"] {
+    vertical-align: middle;
     margin-right: 5px;
 }
 
 .center-button {
     margin-top: 20px;
     width: 100%;
-    padding: 10px;
+    padding: 10px 50px;
     background-color: #007bff;
     color: white;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
+    display: inline-block;
 }
