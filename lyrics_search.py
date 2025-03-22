@@ -17,11 +17,11 @@ def search_lyrics(song_title, artist, language):
         print(search_string, lang)
 
         Gsearch = search(search_string, num_results=3, sleep_interval = 5, lang=lang)
-            gsearch_list = list(Gsearch)
+        gsearch_list = list(Gsearch)
 
-            num=0
-            for y in gsearch_list:
-                num +=1
-                print(num, y)
+        num=0
+        for y in gsearch_list:
+            num +=1
+            print(num, y)
 
 

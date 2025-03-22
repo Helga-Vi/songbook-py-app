@@ -21,7 +21,7 @@ collection = db['messages']  # Create a collection named 'messages'
 @app.route('/')
 def home():
     # Get a list of all songs
-    all_songs = list(collection.find({}, {'Sangtittel': 1, 'Artist':1, '_id': 0}))
+    all_songs = list(collection.find({}, {'Sangtittel': 1, 'Artist':1, 'Spraak':1,'_id': 0}))
     
     # Randomly select a song
     random_song = random.choice(all_songs)
@@ -29,7 +29,7 @@ def home():
     return render_template('index.html', 
                           title=random_song['Sangtittel'],
                           artist=random_song['Artist'],
-                          language=random_song['Språk'])
+                          language=random_song['Spraak'])
 
 @app.route('/process_request', methods=['POST'])
 def process_request():
