@@ -52,12 +52,15 @@ def process_request():
             if result["Tekst_tilgjengelig"]:
                 # Step 3: Return the text file
                 # Note: This is a placeholder. You'll need to implement the actual file retrieval.
+                print("Lyrics available")
                 return jsonify({"success": True, "message": f"Lyrics available for {song_title} by {artist_name}"})
             else:
+                print("Lyrics not available, starting internet search")
                 return jsonify({"error": "Lyrics not available in database. Searching online..."})
 
         else:
             # Song not found in database
+            print("Song not found in database")
             return jsonify({"error": "Song not found in database"})
 
     elif user_choice == 'no':
