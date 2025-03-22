@@ -42,13 +42,13 @@ def process_request():
             "Sangtittel": song_title,
             "Artist": artist_name
         })
-     if result:
+        if result:
             # Step 2: Check Tekst_tilgjengelig field
             if result["Tekst_tilgjengelig"]:
                 # Step 3: Return the text file
                 # Note: This is a placeholder. You'll need to implement the actual file retrieval.
                 return jsonify({"success": True, "message": f"Lyrics available for {song_title} by {artist_name}"})
-     else:
+        else:
             # Song not found in database
             return jsonify({"error": f"No lyrics found for {song_title} by {artist_name}"})
 
