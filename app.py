@@ -53,7 +53,7 @@ def process_request():
                 # Step 3: Return the text file
                 # Note: This is a placeholder. You'll need to implement the actual file retrieval.
                 print("Tekst tilgjengelig")
-                return jsonify({"success": True, "message": f"Lyrics available for {song_title} by {artist_name}"})
+                return jsonify({"success": True, "message": f"Tekst tilgjengelig for {song_title} med {artist_name}"})
             else:
                 print("Tekst ikke tilgjengelig, starter internettsøk")
                 return jsonify({"error": "Tekst ikke tilgjengelig i databasen. Søker online..."})
@@ -65,13 +65,15 @@ def process_request():
 
     elif user_choice == 'no':
         print("Laster siden om igjen")
-        return jsonify({"redirect": "home"})
+        return jsonify({"error": "Vi finner en ny sang til deg"})
         # Logic for when user chooses no
         # This will trigger a page reload, which will call this function again
         # with a new random song
 
-    print("Laster siden om igjen")
-    return jsonify({"error": "Unexpected choice"}), 400
+
+    print("Feil - laster siden om igjen")
+    return jsonify({"error": str(e)})
+    
         
 
 if __name__ == '__main__':

@@ -18,19 +18,32 @@ document.addEventListener('DOMContentLoaded', function() {
                 body: formData,
             })
 
-            const data = await response.json();
-            console.log(data);
+            const contentType = response.headers.get('content-type');
+            console.log('Content-Type:', contentType);
+
+            const data = await response.text();
+            console.log('Response Data:', data.substring(0, 200));
+
+            if (!contentType || !contentType.includes('application/json')) {
+                throw new Error('Invalid content type');
+            }
             
-            if (data.success) {
-                alert(data.message);
-            } else if (data.redirect) {
-                window.location.href = data.redirect;
+            const parsedData = JSON.parse(data);
+            console.log('Parsed Data:', parsedData);
+
+            if (parsedData.success) {
+                alert(parsedData.message);
+            } else if (parsedData.error) {
+                showFeedback(parsedData.error || 'Vi finner en ny sang til deg');
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 5000);
             } else {
                 showFeedback(data.error || 'An unknown error occurred');
             }
         } catch (error) {
             console.error('Error:', error);
-            showFeedback('An unexpected error occurred');
+            showFeedback('An unexpected error occurred. Please try again.');
         }
     });
 
