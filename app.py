@@ -27,7 +27,8 @@ def home():
     
     return render_template('index.html', 
                           title=random_song['Sangtittel'],
-                          artist=random_song['Artist'])
+                          artist=random_song['Artist'],
+                          language=random_song['Språk'])
 
 @app.route('/process_request', methods=['POST'])
 def process_request():
