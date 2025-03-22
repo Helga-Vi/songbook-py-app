@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 from pymongo import MongoClient
 import random
 
@@ -34,6 +34,8 @@ def process_request():
     song_title = request.form['song_title']
     artist_name = request.form['artist']
     user_choice = request.form['choice']
+
+    print(f"Received request for {song_title} by {artist_name}, choice: {user_choice}")  # Debug print
     
     if user_choice == 'yes':
         # Logic for when user chooses yes
@@ -42,21 +44,27 @@ def process_request():
             "Sangtittel": song_title,
             "Artist": artist_name
         })
+
+        print(f"Database result: {result}")
+
         if result:
             # Step 2: Check Tekst_tilgjengelig field
             if result["Tekst_tilgjengelig"]:
                 # Step 3: Return the text file
                 # Note: This is a placeholder. You'll need to implement the actual file retrieval.
                 return jsonify({"success": True, "message": f"Lyrics available for {song_title} by {artist_name}"})
+            else:
+                return jsonify({"error": "Lyrics not available in database. Searching online..."})
+
         else:
             # Song not found in database
-            return jsonify({"error": f"No lyrics found for {song_title} by {artist_name}"})
+            return jsonify({"error": "Song not found in database"})
 
     elif user_choice == 'no':
+         return redirect(url_for('home'))
         # Logic for when user chooses no
         # This will trigger a page reload, which will call this function again
         # with a new random song
-        pass
     
     return redirect(url_for('home'))
         
