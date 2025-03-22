@@ -15,6 +15,7 @@
     <p><strong>{{ title }}</strong> med {{ artist }}</strong></p>
     <form action="{{ url_for('process_request') }}" method="post">
         <input type="hidden" name="song_title" value="{{ title }}">
+        <input type="hidden" name="artist" value="{{ artist }}">
         <div class="radio-group">
         <label for="yes">Ja, jeg vil ha teksten!</label>
         <input type="radio" id="yes" name="choice" value="yes" required>

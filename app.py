@@ -32,11 +32,26 @@ def home():
 @app.route('/process_request', methods=['POST'])
 def process_request():
     song_title = request.form['song_title']
+    artist_name = request.form['artist']
     user_choice = request.form['choice']
     
     if user_choice == 'yes':
         # Logic for when user chooses yes
-        pass
+         # Step 1: Query the database
+        result = db.messages.find_one({
+            "Sangtittel": song_title,
+            "Artist": artist_name
+        })
+     if result:
+            # Step 2: Check Tekst_tilgjengelig field
+            if result["Tekst_tilgjengelig"]:
+                # Step 3: Return the text file
+                # Note: This is a placeholder. You'll need to implement the actual file retrieval.
+                return jsonify({"success": True, "message": f"Lyrics available for {song_title} by {artist_name}"})
+     else:
+            # Song not found in database
+            return jsonify({"error": f"No lyrics found for {song_title} by {artist_name}"})
+
     elif user_choice == 'no':
         # Logic for when user chooses no
         # This will trigger a page reload, which will call this function again
