@@ -34,7 +34,14 @@ def process_request():
     song_title = request.form['song_title']
     user_choice = request.form['choice']
     
-    # Your logic here to handle the user's choice
+    if user_choice == 'yes':
+        # Logic for when user chooses yes
+        pass
+    elif user_choice == 'no':
+        # Logic for when user chooses no
+        # This will trigger a page reload, which will call this function again
+        # with a new random song
+        pass
     
     return redirect(url_for('home'))
         
