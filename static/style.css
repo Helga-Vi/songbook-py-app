@@ -35,35 +35,46 @@ form {
 }
 
 .radio-group {
+    display: flex;
+    align-items: center;
     margin-bottom: 20px;
+    gap: 15px; 
 }
 
-label {
-    display: block;
-    margin-bottom: 10px;
+.radio-group label {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    width: 100%;
+    padding: 5px 5px;
+    border-radius: 5px;
+    min-height: 1.5em;
 }
 
 input[type="radio"] {
-    vertical-align: middle;
     margin-right: 5px;
 }
 
 .center-button {
+    height: 30 px;
+    line-height: normal;
     margin-top: 20px;
-    width: 100%;
-    padding: 10px 50px;
+    width: 15%;
+    box-sizing: border-box;
+    padding: 10px 30px;
     background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     display: inline-block;
+    text-align: center;
 }
 
 .attribution {
     font-size: 0.8em;
     color: #666;
-    margin-top: 100px;
+    margin-top: 50px;
     text-align: center;
 }
 
