@@ -11,7 +11,7 @@
     <div class="image-container">
     <img src="{{ url_for('static', filename='summer-music-photo-1155889.jpg') }}" alt="Summer music">
     </div>
-    <h1>Sangvelger for sommersanger</h1>
+    <h1>Sangvelger for sommersangtekster</h1>
     <p><strong>{{ title }}</strong> med {{ artist }}</strong></p>
     <form action="{{ url_for('process_request') }}" method="post">
         <input type="hidden" name="song_title" value="{{ title }}">
@@ -26,7 +26,7 @@
         </div>
         <button type="submit" class=" center-button">Submit</button>
     </form>
-    <p class="attribution">Photo by <a href="/photographer/jaylopez-61821">jaylopez</a> on <a href="/">Freeimages.com</a></p>
+    <p class="attribution">Image by <a href="/photographer/jaylopez-61821">jaylopez</a> on <a href="/">Freeimages.com</a></p>
     </div>
     <script src="{{ url_for('static', filename='js/feedback.js') }}"></script>
 </body>

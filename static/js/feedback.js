@@ -1,20 +1,30 @@
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.querySelector('form');
+    const radioButtons = form.querySelectorAll('input[type="radio"]');
     
+    radioButtons.forEach(radio => {
+        radio.addEventListener('change', function() {
+            // Do nothing when radio buttons are changed
+        });
+    });
+
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
-        
-        try {
-            const response = await fetch(form.action, {
+
+    try {
+        const formData = new FormData(this);
+        const response = await fetch(form.action, {
                 method: form.method,
-                body: new FormData(this),
-            });
-            
+                body: formData,
+            })
+
             const data = await response.json();
             console.log(data);
             
             if (data.success) {
                 alert(data.message);
+            } else if (data.redirect) {
+                window.location.href = data.redirect;
             } else {
                 showFeedback(data.error || 'An unknown error occurred');
             }
@@ -33,18 +43,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // Append the feedback to the body
         document.body.appendChild(feedbackDiv);
         
-        // Hide the original submit button
-        const submitButton = document.querySelector('button[type="submit"]');
-        if (submitButton) {
-            submitButton.style.display = 'none';
-        }
-        
         // Wait for 5 seconds before removing the feedback
         setTimeout(() => {
             feedbackDiv.remove();
-            if (submitButton) {
-                submitButton.style.display = '';
-            }
         }, 5000);
     }
 });
