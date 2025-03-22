@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 from pymongo import MongoClient
 import random
-import lyrics_search
+from lyrics_search import search_lyrics
+
 
 app = Flask(__name__)
 
@@ -60,6 +61,8 @@ def process_request():
                 print("Tekst ikke tilgjengelig, starter internettsøk")
                 return jsonify({"error": "Tekst ikke tilgjengelig i databasen. Søker online..."})
                 lyrics = search_lyrics(song_title, artist_name, language)
+
+                return lyrics
         else:
             # Song not found in database
             print("Sang ikke funnet i databasen")

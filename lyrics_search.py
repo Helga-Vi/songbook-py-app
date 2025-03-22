@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 
 def search_lyrics(song_title, artist, language):
 
+    print("Search lyrics function responding")
     settings_dict ={"Norsk": ["sang tekst", "no"],"Svensk": ["sång text", "se"], "Engelsk":["song lyrics", "en"]}
 
     for key, value in settings_dict.items():
@@ -19,9 +20,6 @@ def search_lyrics(song_title, artist, language):
         Gsearch = search(search_string, num_results=3, sleep_interval = 5, lang=lang)
         gsearch_list = list(Gsearch)
 
-        num=0
-        for y in gsearch_list:
-            num +=1
-            print(num, y)
+        return json.dumps([{"title": result.title, "content": result.content} for result in Gsearch])
 
 
