@@ -1,6 +1,7 @@
 from googlesearch import search
 import requests
 from bs4 import BeautifulSoup
+import json
 
 def search_lyrics(song_title, artist, language):
 
