@@ -41,6 +41,8 @@ def search_lyrics(song_title, artist, language):
     for i, url in enumerate(gsearch_list, start=1):
         print(f"{i}. {url}")
 
+    selected_number = int(input("\nEnter the number of the URL you'd like to scrape (1-5): "))
+
         # Return the results as JSON
     return json.dumps(gsearch_list, indent=2)
 
