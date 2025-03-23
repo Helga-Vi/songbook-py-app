@@ -22,4 +22,6 @@ def search_lyrics(song_title, artist, language):
 
         return json.dumps([{"title": result.title, "content": result.content} for result in Gsearch])
 
-
+# Add this function call at the end of the script to test it
+if __name__ == "__main__":
+    search_lyrics("Here comes the sun", "George Harrison", "Engelsk")
