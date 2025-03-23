@@ -28,7 +28,7 @@ def home():
     random_song = random.choice(all_songs)
 
     # Store the language in session
-    session['song_language'] = random_song['Spraak']
+   # session['song_language'] = random_song['Spraak']
     
     return render_template('index.html', 
                           title=random_song['Sangtittel'],
