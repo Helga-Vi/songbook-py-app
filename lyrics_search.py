@@ -31,24 +31,18 @@ def search_lyrics(song_title, artist, language):
 
     print(search_string, lang)
 
-    Gsearch = search(search_string, num_results=3, sleep_interval = 5, lang=lang)
+    Gsearch = search(search_string, num_results=5, sleep_interval = 5, lang=lang)
     gsearch_list = list(Gsearch)
 
     print(gsearch_list)
 
-    # Process the results
-    processed_results = []
-    for i, result in enumerate(gsearch_list):
-        processed_result = {
-            "title": result.title,
-            "content": result.content
-        }
-        processed_results.append(processed_result)
-        print(f"\nResult {i+1}:")
-        print(processed_result)
+    # Present the results as a numbered list
+    print("\nSearch Results:")
+    for i, url in enumerate(gsearch_list, start=1):
+        print(f"{i}. {url}")
 
         # Return the results as JSON
-    return json.dumps(processed_results, indent=2)
+    return json.dumps(gsearch_list, indent=2)
 
 # Add this function call at the end of the script to test it
 if __name__ == "__main__":
