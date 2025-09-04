@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify, session
 from pymongo import MongoClient
 import random
-from lyrics_search import search_lyrics
+from services.lyrics_search import search_lyrics
 
 
 app = Flask(__name__)
