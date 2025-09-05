@@ -26,36 +26,40 @@ def home():
 
 @main_routes.route('/process_request', methods=['POST'])
 def process_request():
-    data = request.json
-    song_title = data.get['song_title']
-    artist_name = data.get['artist']
-    user_choice = data.get['choice']
+    try:
+        data = request.json
+        song_title = data.get['song_title']
+        artist_name = data.get['artist']
 
-    print(f"Received request for {song_title} by {artist_name}, choice: {user_choice}")  # Debug print
+        print(f"Received request for {song_title} by {artist_name}")  # Debug print
 
-    result = collection.messages.find_one({
-        "Sangtittel": song_title,
-        "Artist": artist_name
-            })
+        if not song_title or not artist_name:
+            return jsonify({"error": "Missing required fields"}), 400
 
-    print(f"Database result: {result}")
+
+        result = collection.messages.find_one({
+            "Sangtittel": song_title,
+            "Artist": artist_name
+                })
+
+        print(f"Database result: {result}")
         
-    if result["Tekst_tilgjengelig"]:
-    # Step 3: Return the text file
-    # Note: This is a placeholder. You'll need to implement the actual file retrieval.
-        print("Tekst tilgjengelig")
-        return jsonify({"success": True, "message": f"Tekst tilgjengelig for {song_title} med {artist_name}"})
-    else:
-        print("Tekst ikke tilgjengelig, starter internettsøk")
-        
-        return jsonify({"error": "Tekst ikke tilgjengelig i databasen. Søker online..."})
-        lyrics = search_lyrics(song_title, artist_name, session.get('song_language'))
-        return jsonify({"success": True, "message": f"Lyrics searched for {song_title}", "search_results": search_results})
-    else:
+        if result:
+        # Step 3: Return the text file
+        # Note: This is a placeholder. You'll need to implement the actual file retrieval.
+            return jsonify({"success": True, "message": f"Tekst tilgjengelig for {song_title} med {artist_name}"})
+        else:
+            print("Tekst ikke tilgjengelig, starter internettsøk")
+            lyrics = search_lyrics(song_title, artist_name)
+
+        if lyrics:
+            return jsonify({"success": True, "message": f"Lyrics searched for {song_title}", "search_results": lyrics})
+        else:
         # Song not found in database
-        print("Sang ikke funnet i databasen")
-        return jsonify({"error": "Sang ikke funnet i databasen"})
+            return jsonify({"error": "Sang ikke funnet i databasen"})
 
-    print("Feil - laster siden om igjen")
-    return jsonify({"error": str(e)})
+    except Exception as e:
+        # Generic error handling
+        print(f"An error occurred: {str(e)}")
+        return jsonify({"error": "An unexpected error occurred"}), 500
 
