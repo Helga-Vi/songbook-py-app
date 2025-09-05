@@ -1,5 +1,5 @@
 # routes/__init__.py
-from .main_routes import main_bp
+from .main_routes import main_routes
 
 def register_blueprints(app):
-    app.register_blueprint(main_bp)
+    app.register_blueprint(main_routes)
