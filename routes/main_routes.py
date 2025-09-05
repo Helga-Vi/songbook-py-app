@@ -23,7 +23,7 @@ def home():
                     artist=random_song['Artist'],
                     language=random_song['Spraak'])
 
-@app.route('/process_request', methods=['POST'])
+@main_routes.route('/process_request', methods=['POST'])
 def process_request():
     song_title = request.form['song_title']
     artist_name = request.form['artist']
