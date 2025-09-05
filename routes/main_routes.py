@@ -56,14 +56,6 @@ def process_request():
         print("Sang ikke funnet i databasen")
         return jsonify({"error": "Sang ikke funnet i databasen"})
 
-    elif user_choice == 'no':
-        print("Laster siden om igjen")
-        return jsonify({"error": "Vi finner en ny sang til deg"})
-        # Logic for when user chooses no
-        # This will trigger a page reload, which will call this function again
-        # with a new random song
-
-
     print("Feil - laster siden om igjen")
     return jsonify({"error": str(e)})
 
