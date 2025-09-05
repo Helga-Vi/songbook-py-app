@@ -1,6 +1,7 @@
 # routes/main_routes.py
 from flask import Blueprint, jsonify
 from services.db import collection
+import random
 
 main_routes = Blueprint('main', __name__)
 
