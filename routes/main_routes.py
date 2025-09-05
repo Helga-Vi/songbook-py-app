@@ -23,13 +23,13 @@ def home():
                     artist=random_song['Artist'],
                     language=random_song['Spraak'])
 
-@main_routes.route('/process_request', methods=['POST'])
-def process_request():
-    song_title = request.form['song_title']
-    artist_name = request.form['artist']
-    user_choice = request.form['choice']
+#@main_routes.route('/process_request', methods=['POST'])
+#def process_request():
+#    song_title = request.form['song_title']
+#    artist_name = request.form['artist']
+#    user_choice = request.form['choice']
 
-    print(f"Received request for {song_title} by {artist_name}, choice: {user_choice}")  # Debug print
+#   print(f"Received request for {song_title} by {artist_name}, choice: {user_choice}")  # Debug print
     
     if user_choice == 'yes':
         # Logic for when user chooses yes
