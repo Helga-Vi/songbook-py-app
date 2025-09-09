@@ -26,7 +26,7 @@ def search_lyrics(song_title, artist):
 
     #if not found_match:
     #        print("\nNo matching language found. Defaulting to Norwegian.")
-    #        search_string = f"{song_title} {artist} sang tekst"
+    search_string = f"{song_title} {artist} sang tekst"
     #        lang = "no"
 
     #print(search_string, lang)
