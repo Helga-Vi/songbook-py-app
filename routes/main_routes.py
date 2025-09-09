@@ -27,9 +27,10 @@ def home():
 @main_routes.route('/process_request', methods=['POST'])
 def process_request():
     try:
+        print(f"Request headers: {request.headers}")
         data = request.json
-        song_title = data.get['song_title']
-        artist_name = data.get['artist']
+        song_title = data.get('song_title')
+        artist_name = data.get('artist')
 
         print(f"Received request for {song_title} by {artist_name}")  # Debug print
 
