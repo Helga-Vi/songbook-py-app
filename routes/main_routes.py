@@ -64,3 +64,20 @@ def process_request():
         print(f"An error occurred: {str(e)}")
         return jsonify({"error": "An unexpected error occurred"}), 500
 
+@main_routes.route('/new_song')
+def new_song():
+    # Get a list of all songs
+    all_songs = list(collection.find({}, {'Sangtittel': 1, 'Artist':1, 'Spraak':1,'_id': 0}))
+
+    if not all_songs:
+        return jsonify({"error": "No songs in database"}), 404
+    
+    # Randomly select a song
+    random_song = random.choice(all_songs)
+
+    # Store the language in session
+    # session['song_language'] = random_song['Spraak']
+    
+    return jsonify( title=random_song['Sangtittel'],
+                    artist=random_song['Artist'],
+                    language=random_song['Spraak'])
