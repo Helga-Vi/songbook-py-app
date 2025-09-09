@@ -66,6 +66,7 @@ def process_request():
 
 @main_routes.route('/new_song')
 def new_song():
+    #Needs to be turned into a post route when the frontend comes up
     # Get a list of all songs
     all_songs = list(collection.find({}, {'Sangtittel': 1, 'Artist':1, 'Spraak':1,'_id': 0}))
 
@@ -81,3 +82,13 @@ def new_song():
     return jsonify( title=random_song['Sangtittel'],
                     artist=random_song['Artist'],
                     language=random_song['Spraak'])
+
+@main_routes.route('/choose_lyrics_source', methods=['POST'])
+def process_request():
+    try:
+        print(f"Request headers: {request.headers}")
+    
+    except Exception as e:
+        # Generic error handling
+        print(f"An error occurred: {str(e)}")
+        return jsonify({"error": "An unexpected error occurred"}), 500
