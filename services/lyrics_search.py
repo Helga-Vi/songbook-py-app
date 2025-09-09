@@ -3,35 +3,35 @@ import requests
 from bs4 import BeautifulSoup
 import json
 
-def search_lyrics(song_title, artist, language):
+def search_lyrics(song_title, artist):
 
     print("Search lyrics function responding")
-    settings_dict ={
-        "Norsk": ["sang tekst", "no"],
-        "Svensk": ["sång text", "se"], 
-        "Engelsk":["song lyrics", "en"]
-        }
+    #settings_dict ={
+    #    "Norsk": ["sang tekst", "no"],
+    #    "Svensk": ["sång text", "se"], 
+    #    "Engelsk":["song lyrics", "en"]
+    #    }
 
-    print("Language", language)
+    #print("Language", language)
 
-    found_match = False
+    #found_match = False
 
-    for key, value in settings_dict.items():
+    #for key, value in settings_dict.items():
         #print(f"Checking key: {key}, Value: {value}")
-        if language.lower() == key.lower():
-            search_string = f"{song_title} {artist} {value[0]}"
-            lang = value[1]
-            found_match = True
-            break
+    #    if language.lower() == key.lower():
+    #        search_string = f"{song_title} {artist} {value[0]}"
+    #        lang = value[1]
+    #        found_match = True
+    #        break
 
-    if not found_match:
-            print("\nNo matching language found. Defaulting to Norwegian.")
-            search_string = f"{song_title} {artist} sang tekst"
-            lang = "no"
+    #if not found_match:
+    #        print("\nNo matching language found. Defaulting to Norwegian.")
+    #        search_string = f"{song_title} {artist} sang tekst"
+    #        lang = "no"
 
-    print(search_string, lang)
+    #print(search_string, lang)
 
-    Gsearch = search(search_string, num_results=5, sleep_interval = 5, lang=lang)
+    Gsearch = search(search_string, num_results=5, sleep_interval = 5)
     gsearch_list = list(Gsearch)
 
     print(gsearch_list)
