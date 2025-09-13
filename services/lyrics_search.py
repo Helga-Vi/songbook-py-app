@@ -1,7 +1,7 @@
 from googlesearch import search
 import json
 
-def search_lyrics(song_title, artist):
+def search_lyrics(song_title, artist, language):
 
     print("Search lyrics function responding")
     settings_dict ={
