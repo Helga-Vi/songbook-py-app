@@ -31,16 +31,18 @@ def process_request():
         data = request.json
         song_title = data.get('song_title')
         artist_name = data.get('artist')
+        language = data.get('language')
 
-        print(f"Received request for {song_title} by {artist_name}")  # Debug print
+        print(f"Received request for {song_title} by {artist_name} in {language}")  # Debug print
 
-        if not song_title or not artist_name:
+        if not song_title or not artist_name or not language:
             return jsonify({"error": "Missing required fields"}), 400
 
 
         result = collection.messages.find_one({
             "Sangtittel": song_title,
-            "Artist": artist_name
+            "Artist": artist_name,
+            "Language": language
                 })
 
         print(f"Database result: {result}")
@@ -48,10 +50,10 @@ def process_request():
         if result:
         # Step 3: Return the text file
         # Note: This is a placeholder. You'll need to implement the actual file retrieval.
-            return jsonify({"success": True, "message": f"Tekst tilgjengelig for {song_title} med {artist_name}"})
+            return jsonify({"success": True, "message": f"Tekst tilgjengelig for {song_title} med {artist_name} på {language}"})
         else:
             print("Tekst ikke tilgjengelig, starter internettsøk")
-            lyrics = search_lyrics(song_title, artist_name)
+            lyrics = search_lyrics(song_title, artist_name, language)
 
         if lyrics:
             return jsonify({"success": True, "message": f"Lyrics searched for {song_title}", "search_results": lyrics})
