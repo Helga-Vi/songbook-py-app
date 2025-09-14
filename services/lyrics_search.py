@@ -13,21 +13,20 @@ def search_lyrics(song_title, artist, language):
     print("Language", language)
 
     found_match = False
-
-    #This part of the script still doesn't work - it returns language = no, no matter what
+    lang = "no"  #Default to Norwegian
 
     for key, value in settings_dict.items():
-        print(f"Checking key: {key}, Value: {value}")
+        # print(f"Checking key: {key}, Value: {value}")
         if language.lower() == key.lower():
             search_string = f"{song_title} {artist} {value[0]}"
             lang = value[1]
             found_match = True
             break
 
-        if not found_match:
-            print("\nNo matching language found. Defaulting to Norwegian.")
-            search_string = f"{song_title} {artist} sang tekst"
-            lang = "no"
+    if not found_match:
+        print("\nNo matching language found. Defaulting to Norwegian.")
+        search_string = f"{song_title} {artist} sang tekst"
+        lang = "no"
 
     print(search_string, lang)
 
