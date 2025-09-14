@@ -14,6 +14,8 @@ def search_lyrics(song_title, artist, language):
 
     found_match = False
 
+    #This part of the script still doesn't work - it returns language = no, no matter what
+
     for key, value in settings_dict.items():
         print(f"Checking key: {key}, Value: {value}")
         if language.lower() == key.lower():
