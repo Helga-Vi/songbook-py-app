@@ -36,7 +36,7 @@ def home():
                           language=random_song['Spraak'])
 
 @app.route('/process_request_alt', methods=['POST'])
-def process_request():
+def process_request_alt():
     song_title = request.form['song_title']
     artist_name = request.form['artist']
     user_choice = request.form['choice']

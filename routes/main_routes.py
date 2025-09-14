@@ -86,7 +86,7 @@ def new_song():
                     language=random_song['Spraak'])
 
 @main_routes.route('/choose_lyrics_source', methods=['POST'])
-def process_request():
+def choose_lyrics_source():
     try:
         print(f"Request headers: {request.headers}")
     
