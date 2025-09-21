@@ -31,9 +31,10 @@ def search_lyrics(song_title, artist, language):
     print(search_string, lang)
 
     Gsearch = search(search_string, num_results=5, sleep_interval = 5)
+    print (f"Gsearch object {Gsearch}")
     gsearch_list = list(Gsearch)
 
-    print(gsearch_list)
+    print(f"Gsearch list {gsearch_list}")
 
     # Present the results as a numbered list
     #print("\nSearch Results:")
@@ -42,8 +43,11 @@ def search_lyrics(song_title, artist, language):
 
     #selected_number = int(input("\nEnter the number of the URL you'd like to scrape (1-5): "))
 
-        # Return the results as JSON
-    return json.dumps(gsearch_list, indent=2)
+        # Return the results as JSON4
+    if not gsearch_list:
+        return json.dumps([], indent= 2)
+    else:
+        return json.dumps(gsearch_list, indent=2)
 
 # Add this function call at the end of the script to test it
 if __name__ == "__main__":

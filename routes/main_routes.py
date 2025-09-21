@@ -3,6 +3,7 @@ from flask import Blueprint, jsonify, request
 from services.db import collection
 from services.lyrics_search import search_lyrics
 import random
+import json
 
 main_routes = Blueprint('main', __name__)
 
@@ -27,7 +28,7 @@ def home():
 @main_routes.route('/process_request', methods=['POST'])
 def process_request():
     try:
-        print(f"Request headers: {request.headers}")
+        #print(f"Request headers: {request.headers}")
         data = request.json
         song_title = data.get('song_title')
         artist_name = data.get('artist')
@@ -56,7 +57,11 @@ def process_request():
             lyrics = search_lyrics(song_title, artist_name, language)
 
         if lyrics:
-            return jsonify({"success": True, "message": f"Lyrics searched for {song_title}", "search_results": lyrics})
+            result_data = json.loads(lyrics)
+            if not result_data:
+                return jsonify({"error": "No search results found", "search_string": f"{song_title} {artist_name}"})
+            else:
+                return jsonify({"success": True, "message": f"Lyrics searched for {song_title}", "search_results": lyrics})
         else:
         # Song not found in database
             return jsonify({"error": "Sang ikke funnet i databasen"})
