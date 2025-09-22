@@ -45,9 +45,9 @@ def search_lyrics(song_title, artist, language):
 
         # Return the results as JSON4
     if not gsearch_list:
-        return json.dumps([], indent= 2)
+        return []
     else:
-        return json.dumps(gsearch_list, indent=2)
+        return gsearch_list
 
 # Add this function call at the end of the script to test it
 if __name__ == "__main__":
