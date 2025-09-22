@@ -28,10 +28,10 @@ def search_lyrics(song_title, artist, language):
         search_string = f"{song_title} {artist} sang tekst"
         lang = "no"
 
-    print(search_string, lang)
+    print(f"Search string being used: {search_string}. Language: {lang}")
 
     Gsearch = search(search_string, num_results=5, sleep_interval = 5)
-    print (f"Gsearch object {Gsearch}")
+    #print (f"Gsearch object {Gsearch}")
     gsearch_list = list(Gsearch)
 
     print(f"Gsearch list {gsearch_list}")
