@@ -30,18 +30,20 @@ def search_lyrics(song_title, artist, language):
 
     print(f"Search string being used: {search_string}. Language: {lang}")
 
-    Gsearch = search(search_string, num_results=5, sleep_interval = 5)
+    results = []
+    with DDGS() as ddgs:
+        for r in ddgs.text(search_string, max_results=5):
+            results.append({
+                "title": r.get("title"),
+                "url": r.get("href"),
+                "snippet": r.get("body")
+            })
 
-    print(f"Gsearch type: {type(Gsearch)}")
+    print(f"Found {len(results)} results")
+    return results
 
-    for item in Gsearch:
-        print("Result:", item)
-
-    #print (f"Gsearch object {Gsearch}")
-    gsearch_list = list(Gsearch)
-
-    print(f"Gsearch list {gsearch_list}")
-
+   
+   
     # Present the results as a numbered list
     #print("\nSearch Results:")
     #for i, url in enumerate(gsearch_list, start=1):
@@ -50,14 +52,12 @@ def search_lyrics(song_title, artist, language):
     #selected_number = int(input("\nEnter the number of the URL you'd like to scrape (1-5): "))
 
         # Return the results as JSON4
-    if not gsearch_list:
-        return []
-    else:
-        return gsearch_list
+    
 
 # Add this function call at the end of the script to test it
 if __name__ == "__main__":
     search_result = search_lyrics("Here comes the sun", "George Harrison", "Engelsk")
     if search_result:
-        print("\nJSON Output:")
-        print(search_result)
+         print(json.dumps(search_result, indent=2, ensure_ascii=False))
+    else:
+        print("No results found.")
