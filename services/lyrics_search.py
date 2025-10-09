@@ -1,4 +1,4 @@
-from googlesearch import search
+from duckduckgo_search import DDGS
 import json
 
 def search_lyrics(song_title, artist, language):
@@ -31,6 +31,12 @@ def search_lyrics(song_title, artist, language):
     print(f"Search string being used: {search_string}. Language: {lang}")
 
     Gsearch = search(search_string, num_results=5, sleep_interval = 5)
+
+    print(f"Gsearch type: {type(Gsearch)}")
+
+    for item in Gsearch:
+        print("Result:", item)
+
     #print (f"Gsearch object {Gsearch}")
     gsearch_list = list(Gsearch)
 
